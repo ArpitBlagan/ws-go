@@ -1,0 +1,39 @@
+syntax="proto3";
+
+option go_package="./";
+
+//simple create two type of message one for req body other for res for a
+//particular endpoints and you are good to go.
+message User{
+    string id=1;
+    string name=2;
+    string email=3;
+    string address=4;
+    string password=5;
+    string image=6;
+};
+
+message CreateUserReq{
+    string name=1;
+    string email=2;
+    string address=3;
+    string password=4;
+    string image=5;
+};
+
+message CreateUserRes{
+    User user=1;
+};
+
+message StreamReq{
+    string MessageReq=1;
+};
+
+message StreamRes{
+    string MessageRes=1; 
+};
+
+service UserService{
+    rpc CreateUser(CreateUserReq) returns (CreateUserRes);
+    rpc BidrectionalStream(stream StreamReq) returns (StreamRes);
+};

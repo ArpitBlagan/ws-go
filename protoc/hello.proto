@@ -1,0 +1,24 @@
+//Example proto file for understanding and learning
+
+// Command to autogenerate file for models/types and services is
+//:=> protoc --go-grpc_out=. --go_out=. *.proto
+
+//Which version of proto we are using
+syntax="proto3";
+
+//Where we want to get the auto generated file (give the path here)
+option go_package="./";
+
+//Models
+message HelloReq{
+    string Something=1;
+}
+
+message HelloRes{
+    string Reply=1;
+}
+
+//Services
+service Example{
+    rpc HelloFunc (stream HelloReq) returns (HelloRes);
+}
